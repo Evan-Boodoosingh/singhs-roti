@@ -25,7 +25,7 @@ export const site = {
 
   story: {
     eyebrow: "Our story",
-    heading: "Thirty years of Trinidad, made by hand",
+    heading: "Twenty years of Trinidad, made by hand",
     image: "/images/story.jpg",
     paragraphs: [
       "Singh's Roti Shop was started by Ricky and Kay Boodoosingh, who came to Boston from Trinidad and Tobago and wanted to bring a taste of home to their community. They opened their first doors about thirty years ago on Columbia Road in Dorchester.",

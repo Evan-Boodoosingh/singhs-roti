@@ -57,7 +57,7 @@ export default function Footer() {
               ),
           )}
 
-          <div>
+          {/* <div>
             <p className="mb-3 text-xs uppercase tracking-widest text-accent-warm">
               Explore
             </p>
@@ -83,7 +83,7 @@ export default function Footer() {
                 Facebook
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
