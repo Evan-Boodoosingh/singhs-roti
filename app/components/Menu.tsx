@@ -1,36 +1,38 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import type { MenuCategory } from '../../sanity/lib/getMenu'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import type { MenuCategory } from "../../sanity/lib/getMenu";
+import { stagger, staggerItem } from "../lib/motion";
 
 export default function Menu({ categories }: { categories: MenuCategory[] }) {
-  const [activeId, setActiveId] = useState(categories[0]?._id ?? '')
+  const [activeId, setActiveId] = useState(categories[0]?._id ?? "");
 
   if (categories.length === 0) {
-    return <p className="text-center text-text-muted">Menu coming soon.</p>
+    return <p className="text-center text-text-muted">Menu coming soon.</p>;
   }
 
-  const active = categories.find((c) => c._id === activeId) ?? categories[0]
+  const active = categories.find((c) => c._id === activeId) ?? categories[0];
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-16">
       {/* Tabs, derived from the categories in Sanity */}
       <div className="mb-10 flex flex-wrap justify-center gap-2">
         {categories.map((category) => {
-          const isActive = category._id === active._id
+          const isActive = category._id === active._id;
           return (
             <button
               key={category._id}
               onClick={() => setActiveId(category._id)}
               className={`rounded-full border px-4 py-2 text-sm transition-colors ${
                 isActive
-                  ? 'border-accent bg-accent text-white'
-                  : 'border-border bg-surface text-text hover:border-accent-warm'
+                  ? "border-accent bg-accent text-white"
+                  : "border-border bg-surface text-text hover:border-accent-warm"
               }`}
             >
               {category.title}
             </button>
-          )
+          );
         })}
       </div>
 
@@ -42,14 +44,20 @@ export default function Menu({ categories }: { categories: MenuCategory[] }) {
         )}
       </div>
 
-      {/* Items */}
-      <ul className="divide-y divide-border">
+      {/* Items cascade in on scroll, and re-cascade when the tab changes */}
+      <motion.ul
+        key={active._id}
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        className="divide-y divide-border"
+      >
         {active.items?.map((item, i) => (
-          <li
+          <motion.li
             key={i}
-            className={`flex items-baseline justify-between gap-4 py-4 ${
-              item.available === false ? 'opacity-40' : ''
-            }`}
+            variants={staggerItem}
+            className="flex items-baseline justify-between gap-4 py-4"
           >
             <div>
               <span className="font-medium text-text">{item.name}</span>
@@ -67,9 +75,22 @@ export default function Menu({ categories }: { categories: MenuCategory[] }) {
             <span className="whitespace-nowrap tabular-nums font-medium text-accent">
               ${item.price?.toFixed(2)}
             </span>
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
+
+      {/* Order for delivery: points people to their nearest shop's links */}
+      <div className="mt-14 border-t border-border pt-10 text-center">
+        <p className="text-text-muted">
+          Hungry? Order delivery from your nearest shop.
+        </p>
+        <a
+          href="#locations"
+          className="mt-4 inline-block rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-warm"
+        >
+          Choose your shop
+        </a>
+      </div>
     </section>
-  )
+  );
 }

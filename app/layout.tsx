@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
+import Nav from "./components/Nav";
+import MotionProvider from "./components/MotionProvider";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -24,9 +26,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${hanken.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${hanken.variable} h-full scroll-smooth scroll-pt-24 antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <MotionProvider>
+          <Nav />
+          {children}
+        </MotionProvider>
+      </body>
     </html>
   );
 }
