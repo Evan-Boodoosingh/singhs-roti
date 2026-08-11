@@ -35,3 +35,18 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
 }
+
+/* Reviews marquee: the track holds the list twice, so sliding half its
+   width loops seamlessly. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 45s linear infinite;
+}

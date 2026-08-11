@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity'
+import { groq } from "next-sanity";
 
 export const MENU_QUERY = groq`
   *[_type == "category"] | order(order asc) {
@@ -13,4 +13,14 @@ export const MENU_QUERY = groq`
       available
     }
   }
-`
+`;
+
+export const REVIEWS_QUERY = groq`
+  *[_type == "review"] | order(_createdAt desc) {
+    _id,
+    author,
+    quote,
+    source,
+    rating
+  }
+`;
