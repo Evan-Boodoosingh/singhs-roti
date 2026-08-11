@@ -1,26 +1,37 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Page canvas, the color behind everything */
+  --color-background: #f7f1e4;   /* coconut ivory */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Cards and panels that sit on the canvas */
+  --color-surface: #fffdf8;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Main reading text */
+  --color-text: #241f1b;         /* tamarind charcoal */
+
+  /* Secondary text, descriptions and captions */
+  --color-text-muted: #6b6560;
+
+  /* Primary accent: buttons, active tab, links */
+  --color-accent: #ce1126;       /* trinidad scarlet */
+
+  /* Secondary warm accent: dividers, hovers, highlights */
+  --color-accent-warm: #d8952e;  /* roti gold */
+
+  /* Dark anchor sections: hero overlay, footer */
+  --color-deep: #15497c;         /* atlantic cobalt */
+
+  /* Hairlines and dividers */
+  --color-border: #e4dccf;
+
+  /* Fonts, loaded in layout.tsx */
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
 }
