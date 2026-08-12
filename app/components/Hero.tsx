@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden md:grid md:grid-cols-2 md:items-stretch">
+    <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden md:grid md:min-h-[100dvh] md:grid-cols-2 md:items-stretch">
       {/* Image: full-bleed on mobile, right half on desktop */}
       <div className="absolute inset-0 md:relative md:inset-auto md:order-2 md:min-h-full">
         <Image

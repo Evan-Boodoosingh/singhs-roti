@@ -25,10 +25,10 @@ export const site = {
 
   story: {
     eyebrow: "Our story",
-    heading: "Twenty years of Trinidad, made by hand",
+    heading: "Over Twenty years of Trinidad, made by hand",
     image: "/images/story.jpg",
     paragraphs: [
-      "Singh's Roti Shop was started by Ricky and Kay Boodoosingh, who came to Boston from Trinidad and Tobago and wanted to bring a taste of home to their community. They opened their first doors about thirty years ago on Columbia Road in Dorchester.",
+      "Singh's Roti Shop was started by Ricky and Kay Boodoosingh, who came to Boston from Trinidad and Tobago and wanted to bring a taste of home to their community. They opened their first doors about twenty five years ago on Columbia Road in Dorchester.",
       "It is still a family shop. Ricky and Kay run it alongside their children, Dillian and Brianna, now from a larger spot just up the road in Dorchester and a second location steps from Revere Beach. Everything is handmade to order, the way it always has been.",
     ],
     award:
@@ -59,7 +59,7 @@ export const site = {
     {
       name: "Revere Beach",
       address: "76 Revere Beach Blvd, Revere, MA 02151",
-      phone: "(617) 777-2295", // TODO: add the Revere Beach phone number
+      phone: "(781) 629-3049", // TODO: add the Revere Beach phone number
       hours: ["Mon - Sat: 11:00 AM - 8:00 PM", "Sun: 11:00 AM - 7:00 PM"],
       ordering: {
         doordash:
