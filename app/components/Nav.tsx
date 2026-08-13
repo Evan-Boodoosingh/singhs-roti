@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { site } from "../lib/site";
 
@@ -34,17 +35,21 @@ export default function Nav() {
     <>
       {/* Desktop editorial bar */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 hidden items-center justify-between px-8 py-5 transition-all duration-300 md:flex ${
+        className={`fixed inset-x-0 top-0 z-50 hidden items-center justify-between px-8 py-2 transition-all duration-300 md:flex ${
           scrolled
             ? "bg-text/95 shadow-lg backdrop-blur"
             : "bg-gradient-to-b from-text/60 to-transparent"
         }`}
       >
-        <button
-          onClick={toTop}
-          className="font-serif text-lg tracking-wide text-white"
-        >
-          {site.name}
+        <button onClick={toTop} aria-label={site.name} className="flex items-center">
+          <Image
+            src="/images/logo.png"
+            alt={site.name}
+            width={520}
+            height={140}
+            priority
+            className="h-15 w-auto"
+          />
         </button>
 
         <nav className="flex items-center gap-8">
@@ -68,12 +73,16 @@ export default function Nav() {
 
       {/* Mobile floating pill (stays visible above the overlay) */}
       <header className="fixed inset-x-0 top-3 z-50 px-4 md:hidden">
-        <div className="flex items-center justify-between rounded-full border border-white/10 bg-text/90 px-5 py-3 backdrop-blur-md">
-          <button
-            onClick={toTop}
-            className="font-serif text-sm font-light italic tracking-wider text-white"
-          >
-            {site.name}
+        <div className="flex items-center justify-between rounded-full border border-white/10 bg-text/90 px-3 py- backdrop-blur-md">
+          <button onClick={toTop} aria-label={site.name} className="flex items-center">
+            <Image
+              src="/images/logo.png"
+              alt={site.name}
+              width={520}
+              height={140}
+              priority
+              className="h-12 w-auto"
+            />
           </button>
 
           <button
