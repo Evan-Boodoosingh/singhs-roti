@@ -9,7 +9,7 @@ export default function Hero() {
       {/* Image: full-bleed on mobile, right half on desktop */}
       <div className="absolute inset-0 md:relative md:inset-auto md:order-2 md:min-h-full">
         <Image
-          src="/images/hero.png"
+          src="/images/hero.jpeg"
           alt="Freshly made buss up shut on a plate at Singhs Roti Shop"
           fill
           priority
