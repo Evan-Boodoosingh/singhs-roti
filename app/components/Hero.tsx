@@ -2,10 +2,48 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  // Root-cause fix for the iOS/Android mobile "scroll zoom": the address bar
+  // hides/shows during scroll and changes the viewport height. If the hero is
+  // sized to that changing height, the image re-covers the new area and looks
+  // like it zooms in. We lock the mobile hero to the initial viewport height and
+  // only re-measure on actual width/orientation changes, not on scroll-driven
+  // browser chrome movement.
+  const [mobileHeight, setMobileHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    let lastWidth = window.innerWidth;
+
+    const measure = () => {
+      if (window.innerWidth < 768) {
+        setMobileHeight(window.innerHeight);
+      } else {
+        setMobileHeight(null);
+      }
+    };
+
+    measure();
+
+    const onResize = () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        measure();
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
-    <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden md:grid md:min-h-[100dvh] md:grid-cols-2 md:items-stretch">
+    <section
+      style={
+        mobileHeight ? { height: `${mobileHeight}px` } : { minHeight: "100svh" }
+      }
+      className="relative flex items-center justify-center overflow-hidden md:grid md:min-h-[100dvh] md:grid-cols-2 md:items-stretch"
+    >
       {/* Image: full-bleed on mobile, right half on desktop */}
       <div className="absolute inset-0 md:relative md:inset-auto md:order-2 md:min-h-full">
         <Image
